@@ -1,0 +1,37 @@
+{"properties": [
+  {
+    "name": "starter-api.swagger.title",
+    "type": "java.lang.String",
+    "description": "A description for 'starter-api.swagger.title'"
+  },
+  {
+    "name": "starter-api.api.urls.base-cliente",
+    "type": "java.lang.String",
+    "description": "A description for 'starter-api.api.urls.base-cliente'"
+  },
+  {
+    "name": "starter-api.swagger.description",
+    "type": "java.lang.String",
+    "description": "A description for 'starter-api.swagger.description'"
+  },
+  {
+    "name": "starter-api.swagger.contact.name",
+    "type": "java.lang.String",
+    "description": "A description for 'starter-api.swagger.contact.name'"
+  },
+  {
+    "name": "starter-api.swagger.contact.email",
+    "type": "java.lang.String",
+    "description": "A description for 'starter-api.swagger.contact.email'"
+  },
+  {
+    "name": "starter-api.swagger.contact.url",
+    "type": "java.lang.String",
+    "description": "A description for 'starter-api.swagger.contact.url'"
+  },
+  {
+    "name": "spring.cloud.config.import-check.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.config.import-check.enabled'"
+  }
+]}

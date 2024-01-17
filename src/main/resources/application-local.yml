@@ -1,0 +1,91 @@
+starter-api:
+  #Para habilitar o HTTPS é necessário baixar o certificado para o keystore do JDK
+  api:
+    urls:
+        baseCliente: http://baseclientesapihomologa.hml.cloud.poupex
+  swagger:
+    title: Starter API
+    description: Documentação on-line da API
+    contact:
+      name: Equipe de Sistemas Internos
+      email: internos@poupex.com.br
+      url: https://www.poupex.com.br
+spring:
+  cloud:
+    config:
+      import-check:
+        enabled: false
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: starter-api
+  datasource:
+    url: jdbc:h2:mem:db;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL;INIT=CREATE SCHEMA IF NOT EXISTS API;
+    driverClassName: org.h2.Driver
+    username: sa # em projetos reais, haverá um usuário específico para aplicação
+    password:
+    tomcat:
+      access-to-underlying-connection-allowed: true
+  h2:
+    console.enabled: true
+  flyway:
+    enabled: true
+    url: jdbc:h2:mem:db
+    user: sa # em projetos reais, haverá um usuário específico para execução de rotinas DDL e DCL
+    password:
+    locations: classpath:db/migration
+    schemas: API
+    baseline-on-migrate: false
+    table: FLYWAY_SCHEMA_HISTORY
+    placeholders:
+      SCHEMA_NAME: API
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        default_schema: API
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://hmlsso.poupex.com.br/f5-oauth2/v1
+security:
+  oauth2:
+    client:
+      id: f5
+      access-token-uri: https://hmlsso.poupex.com.br/f5-oauth2/v1/token
+      user-authorization-uri: https://hmlsso.poupex.com.br/f5-oauth2/v1/authorize
+      # client credentials para o starter-api consumir API's internas (a criação de client credentials deve ser solicitada via GLPI)
+      grant-type: client_credentials
+      client-id: 8d330308050b33d04cdc1f3874de0094a17efcf8593e9c65
+      client-secret: 9a08bd5f0671a58d86f7d6a4af122ef36c58f9d391c20094a17efcf8593e9c65
+      # scopes atribuídos ao client credentials
+      scope:
+        - base-clientes-api:get
+        - ldap-api:get
+---
+logging:
+  level:
+    org.springframework.core.codec: TRACE
+    org.springframework.http: TRACE
+    org.springframework.boot.actuate.endpoint.web: TRACE
+    org.springframework.boot.web.servlet.ServletContextInitializerBeans: TRACE
+    org.springframework.web: TRACE
+    org.springframework.security: TRACE
+    org.springframework.security.oauth2: TRACE
+    org.springframework.jdbc.core: TRACE
+    org.hibernate.SQL: TRACE
+    tomcat: TRACE
+---
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

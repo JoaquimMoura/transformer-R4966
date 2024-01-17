@@ -1,0 +1,42 @@
+poupex:
+  microservice:
+    swagger:
+      version: @project.version@
+      title: @project.name@
+      description: @project.description@
+      contact:
+        name: @developer.name@
+        email: @developer.email@
+---
+spring:
+  main:
+    banner-mode: 'off'
+  cloud:
+    config:
+      enabled: false
+      import-check: false
+  config:
+    activate:
+      on-profile: local
+
+---
+spring:
+  main:
+    banner-mode: 'off'
+    allow-bean-definition-overriding: true
+  application:
+    name: ${APP_NAME}
+  cloud:
+    config:
+      name: starter-api
+      uri: ${SPRING_CONFIG_URI}
+      username: ${SPRING_CONFIG_USER}
+      password: ${SPRING_CONFIG_PASSWORD}
+      profile: ${SPRING_PROFILES_ACTIVE}
+      fail-fast: true
+      import-check: false
+  config:
+    activate:
+      on-profile: '!local'
+info:
+  swagger-version: 3

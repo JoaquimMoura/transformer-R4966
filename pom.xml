@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.1</version>
+		<relativePath />
+	</parent>
+
+	<groupId>br.com.poupex.starters</groupId>
+	<artifactId>starter-api</artifactId>
+	<version>1.1.25</version>
+	<packaging>jar</packaging>
+
+	<name>starter-api</name>
+	<description>Starter API</description>
+
+	<scm>
+		<tag>HEAD</tag>
+		<developerConnection>
+			${scm.repo}/poupex/arquitetura/starters/spring-boot/starter-api.git</developerConnection>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>${settings.distributionManagement.repository.id}</id>
+			<url>${settings.distributionManagement.repository.url}</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<developer.name>CODTI.EQINT</developer.name>
+		<developer.email>codti.internos@poupex.com.br</developer.email>
+
+		<spring-cloud-dependencies.version>2021.0.2</spring-cloud-dependencies.version>
+		<archunit-junit4.version>0.23.1</archunit-junit4.version>
+		<lombok.version>1.18.24</lombok.version>
+		<spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
+		<spring-boot-starter-oauth2-resource-server.version>2.7.0</spring-boot-starter-oauth2-resource-server.version>
+		<spring-boot-admin-starter-client.version>2.6.7</spring-boot-admin-starter-client.version>
+		<spring-cloud-starter-bootstrap.version>3.1.2</spring-cloud-starter-bootstrap.version>
+		<spring-cloud-starter-config.version>3.1.2</spring-cloud-starter-config.version>
+		<springdoc-openapi-ui.version>1.6.8</springdoc-openapi-ui.version>
+		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
+
+		<skip.unit.tests>false</skip.unit.tests>
+		<surefireArgLine>-Dspring.profiles.active=local</surefireArgLine>
+		<sonar.coverage.exclusions>
+			**/br/com/poupex/starters/api/commons/**
+		</sonar.coverage.exclusions>
+		<sonar.coverage.jacoco.xmlReportPaths>
+			${project.basedir}/target/site/jacoco/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>br.com.poupex.spring-boot</groupId>
+				<artifactId>poupex-starter-bom</artifactId>
+				<version>2.1.3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc-openapi-ui.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-oauth2</artifactId>
+			<version>${spring-cloud-starter-oauth2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+			<version>${spring-boot-starter-oauth2-resource-server.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>${spring-boot-admin-starter-client.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.3.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper-module-record</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>2.1.210</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+			<version>${spring-cloud-starter-config.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bootstrap</artifactId>
+			<version>${spring-cloud-starter-bootstrap.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.tngtech.archunit</groupId>
+			<artifactId>archunit-junit4</artifactId>
+			<version>${archunit-junit4.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>org.sonar.java.jacoco.JUnitListener</value>
+						</property>
+					</properties>
+					<!-- test failure ignore -->
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<configuration>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>org.sonar.java.jacoco.JUnitListener</value>
+						</property>
+					</properties>
+					<reportsDirectory>
+						${project.build.directory}/surefire-reports
+					</reportsDirectory>
+				</configuration>
+			</plugin>
+			<!-- FIM PLUGINS JACOCO -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>${dockerfile-maven-plugin.version}</version>
+				<configuration>
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+					<contextDirectory>${project.basedir}</contextDirectory>
+					<repository>${docker.registry}/app/${project.artifactId}</repository>
+					<buildArgs>
+						<appJar>${project.build.finalName}.${project.packaging}</appJar>
+					</buildArgs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
