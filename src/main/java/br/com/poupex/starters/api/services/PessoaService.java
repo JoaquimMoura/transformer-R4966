@@ -22,9 +22,7 @@ public class PessoaService extends GenericService<Pessoa, Long> {
 
     @Override
     public Pessoa preSave(Pessoa pessoa) {
-        pessoa.getEmails().forEach(email -> email.setPessoa(pessoa));
-        pessoa.getTelefones().forEach(telefone -> telefone.setPessoa(pessoa));
-        pessoa.getEndereco().setPessoa(pessoa);
+
         return pessoa;
     }
 

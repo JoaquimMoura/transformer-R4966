@@ -1,19 +1,20 @@
 package br.com.poupex.starters.api.controllers.dtos;
 
-import br.com.poupex.starters.api.domain.enumeration.Sexo;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
-import java.util.Set;
+
+import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import br.com.poupex.starters.api.domain.enumeration.Sexo;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -37,13 +38,5 @@ public class PessoaDto {
     @NotNull
     private Sexo sexo;
 
-    @NotNull
-    private EnderecoDto endereco;
-
-    @NotNull
-    private Set<TelefoneDto> telefones;
-
-    @NotNull
-    private Set<EmailDto> emails;
 
 }

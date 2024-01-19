@@ -4,13 +4,12 @@ import lombok.Getter;
 
 @Getter
 public enum StatusEmum {
-
-	ATIVO('A'), INATIVO('I');
+	ATIVO('A'), 
+	INATIVO('I');
 
 	private Character codigo;
 
 	StatusEmum(Character codigo) {
 		this.codigo = codigo;
 	}
-
 }
